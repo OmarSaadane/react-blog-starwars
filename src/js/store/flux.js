@@ -1,3 +1,5 @@
+import { element } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -12,7 +14,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			personajes: [],
+			planetas: [],
+			vehiculos: [],
+			favoritos: [],
+			detallespersonaje: {},
+			planeta: {},
+			vehicle:{}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,7 +46,72 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			getPersonajes: () => {
+				fetch("https://www.swapi.tech/api/people/")
+					.then(res => res.json())
+					.then(data => setStore({ personajes: data.results }))
+					.catch(error => console.error(error))
+			},
+			getDetalles: (url) => {
+				fetch(url)
+					.then(res => res.json())
+					.then(data => setStore({ detallespersonaje: data.result }))
+					.catch(error => console.error(error))
+			},
+			getPlanetas: () => {
+				fetch("https://www.swapi.tech/api/planets/")
+					.then(res => res.json())
+					.then(data => setStore({ planetas: data.results }))
+					.catch(error => console.error(error))
+			},
+			getPlaneta: (url) => {
+				fetch(url)
+					.then(res => res.json())
+					.then(data => setStore({ planeta: data.result }))
+					.catch(error => console.error(error))
+			},
+			getVehiculos: () => {
+				fetch("https://www.swapi.tech/api/vehicles/")
+					.then(res => res.json())
+					.then(data => setStore({ vehiculos: data.results }))
+					.catch(error => console.error(error))
+			},
+			getVehicle: (url) => {
+				fetch(url)
+					.then(res => res.json())
+					.then(data => setStore({ vehicle: data.result }))
+					.catch(error => console.error(error))
+			},
+			removeFavorites: (item) => {
+				const store = getStore()
+				let newFavorite = store.favoritos.filter((element) => element !== item)
+				setStore({ favoritos: newFavorite })
+
+			},
+
+			setFavorites: (item) => {
+				const store = getStore()
+				let setFavorites = store.favoritos.includes(item)
+				if (!setFavorites) {
+					setStore({ favoritos: [...store.favoritos, item] })
+				}
+			},
+			// login:(email,password) => {
+			// 	console.log(email,password);
+			// 	console.log("funciona");
+			// 	fetch("")
+			// 	method:"POST",
+			// 	headers:{
+			// 		"content-type":"application/json"
+			// 	},
+			// 	body:JSON.stringify({
+			// 		"email":
+
+			// 	})
+
+				
+			// }
 		}
 	};
 };

@@ -6,9 +6,14 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
-
+import {DetailView} from "./views/vistadetallada";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Planetas } from "./views/planetas";
+import { Vehicles } from "./views/vehicles";
+import { Login } from "./views/login";
+
+// import { useParams } from "react-router-dom";
 
 //create your first component
 const Layout = () => {
@@ -23,8 +28,11 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/demo" element={<Demo />} />
+						<Route path="/detailview/:elementos/:id" element={<DetailView/>} />
+						<Route path="/planetas/:id" element={<Planetas/>} />
+						<Route path="/vehicles/:id" element={<Vehicles/>} />
 						<Route path="/single/:theid" element={<Single />} />
+						<Route path="/signin" element={<Login />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
