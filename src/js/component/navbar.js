@@ -12,7 +12,7 @@ export const Navbar = () => {
 					<a className="navbar-brand"></a>
 					<img className="width-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png"></img>
 				</Link>
-				<Link className="btn btn-success" to="/signin">
+				<Link className="btn btn-success " to="/signin">
 					Login
 				</Link>
 				<div className="ml-auto">
