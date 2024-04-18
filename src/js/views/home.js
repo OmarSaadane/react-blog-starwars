@@ -15,7 +15,7 @@ export const Home = () => {
     return (
         <div className='bg-black'>
             <h1 className='text-danger text-center'>characters</h1>
-            <div className="d-flex gap-0 column-gap-3 overflow-auto">
+            <div className="d-flex gap-0 column-gap-3 overflow-auto ,">
                 {store.personajes.map((item) => (
                     <div className="col p-5" key={item.uid}>
                         <div className="p-2 g-col-6" style={{ width: "250px" }}>
